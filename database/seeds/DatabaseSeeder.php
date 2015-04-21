@@ -49,6 +49,9 @@ class PostTableSeeder extends Seeder {
         $post_image_default = 'post.png';
         $category_icon_default = 'icon.png';
 
+        @copy(public_path() .'/images/default/'.$post_image_default, public_path() .'/images/' .$post_image_default);
+        @copy(public_path() .'/images/default/'.$category_icon_default, public_path() .'/images/' .$category_icon_default);
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('post_tag')->truncate();
         DB::table('posts')->truncate();
