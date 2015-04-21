@@ -57,7 +57,7 @@
         <div id="docked-nav-content-container">
             <ul class="topNav ">
 
-                <li><span><div class="home"></div><a href="#">TRANG CHỦ</a></span></li>
+                <li><span><div class="home"></div><a href="{{url('/')}}">TRANG CHỦ</a></span></li>
                 <li class="hoverActivate"><span><div class="product"></div>SẢN PHẨM</span>
 
                     <div class="megaMenu">
