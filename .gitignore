@@ -1,0 +1,5 @@
+.env
+.idea/
+/public/files/images/*
+/public/js/libs/kcfinder/upload/*
+_ide_helper.php
