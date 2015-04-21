@@ -37,7 +37,7 @@ abstract class BaseRepository {
         $filename = md5(time()) . '.' . $image_request->getClientOriginalExtension();
         $img = Image::make($image_request->getRealPath());
         $img->save(public_path() . '/files/images/' . $filename);
-        if (file_exists(public_path() . '/files/images/' . $old_image)) {
+        if (file_exists(public_path() . '/files/images/' . $old_image) && !in_array($old_image, ['post.png', 'icon.png'])) {
             @unlink(public_path() . '/files/images/' . $old_image);
         }
         return $filename;
