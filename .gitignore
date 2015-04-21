@@ -1,7 +1,7 @@
 .env
 .idea/
 /public/files/images/*
-!/public/files/images/default.png
+!/public/files/images/post.png
 !/public/files/images/icon.png
 
 /public/js/libs/kcfinder/upload/*
