@@ -48,35 +48,14 @@
                 </li>
 
                 <li>
-                    <a><i class="fa fa-files-o fa-fw"></i>Posts<span class="fa arrow"></span></a>
+                    <a><i class="fa fa-files-o fa-fw"></i>Products<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
 
                         <li>
-                            <a href="{{url('admin/posts')}}">List Posts</a>
+                            <a href="{{url('admin/posts')}}">List Products</a>
                         </li>
                         <li>
-                            <a href="{{url('admin/posts/create')}}">Add Post</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a><i class="fa fa-files-o fa-fw"></i>Questions<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{url('admin/questions')}}">List Questions</a>
-                        </li>
-                        <li>
-                            <a href="{{url('admin/questions/create')}}">Add Questions</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a><i class="fa fa-files-o fa-fw"></i>Contacts<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{url('admin/contacts')}}">List Contacts</a>
+                            <a href="{{url('admin/posts/create')}}">Add Product</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

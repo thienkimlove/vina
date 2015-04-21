@@ -42,14 +42,21 @@ elixir(function(mix) {
         //frontend
         .scripts([
             'js/bower_components/angularjs/angular.min.js',
-            'frontend/js/jquery-1.10.2.min.js',
-            'frontend/js/owl.carousel.min.js',
-            'frontend/js/floating-navigation.js',
-            'frontend/js/common.js'
+            'frontend/js/jquery.js',
+            'frontend/js/hoverIntent.js',
+            'frontend/js/jquery_slie.js',
+            'frontend/js/scrolling-nav.js',
+            'frontend/js/soliloquy_slie.js',
         ], 'public/js/frontend.js', 'resources')
         .styles([
-            'style.css'
-        ], 'public/css/frontend.css', 'resources/frontend/css')
+            'docked-nav.css',
+            'slie-pic.css',
+            'bootstrap.min.css',
+            'scrolling-nav.css',
+            'soliloquy.css',
+            'style_002.css',
+
+        ],  'public/css/frontend.css', 'resources/frontend/css')
         .copy('resources/frontend/fonts/', 'public/fonts');
 
 });

@@ -3,9 +3,6 @@
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use Webpatser\Uuid\Uuid;
 
 class Category extends Model implements SluggableInterface {
 
@@ -19,32 +16,10 @@ class Category extends Model implements SluggableInterface {
 	protected $fillable = [
         'name',
         'parent_id',
-        'template',
         'slug',
-        'display_below',
-        'display_homepage_0',
-        'display_homepage_1',
-        'display_homepage_2',
-        'display_homepage_3'
+        'homepage',
+        'icon'
     ];
-
-
-    protected $appends = ['sub_count'];
-
-    /**
-     * When title change then slug will change.
-     * @param $name
-     * @internal param $title
-     */
-  /*  public function setNameAttribute($name)
-    {
-        $this->attributes['name'] = $name;
-        $slug =  Str::limit( Str::slug($name), 32, '');
-        if ($this->where('slug', $slug)->first()) {
-            $slug =  Str::limit( Str::slug($name.' '.Uuid::generate()), 32, '');
-        }
-        $this->attributes['slug'] = $slug;
-    }*/
 
     /**
      * parent of this category
@@ -59,7 +34,7 @@ class Category extends Model implements SluggableInterface {
      * sub of this category
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function subCategories()
+    public function children()
     {
         return $this->hasMany('App\Category', 'parent_id', 'id');
 
@@ -74,12 +49,12 @@ class Category extends Model implements SluggableInterface {
     }
 
     /**
-     * category have many posts.
+     * 5 posts display in homepage.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function latestThreePosts()
+    public function homepagePosts()
     {
-        return $this->hasMany('App\Post')->latest()->limit(3);
+        return $this->hasMany('App\Post')->homepage()->latest()->limit(4);
     }
 
 }

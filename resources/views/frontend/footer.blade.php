@@ -1,55 +1,46 @@
-<footer class="footer">
-    <div class="fix">
-        <div class="box-footer">
-            <div class="item item-1">
-                <div class="head">Mạng xã hội</div>
-                <div class="area-social">
-                    <ul class="social">
-                        <li>
-                            <a href="#" class="i-facebook thumb-img"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="i-tw thumb-img"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="i-youtube thumb-img"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="i-google thumb-img"></a>
-                        </li>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div style="height: 233px; visibility: visible; animation-name: fadeInUp;" class="col-lg-3 col-md-3 col-sm-6 col-xs-6 indent maxheight2 wow fadeInUp animated"><div class="box_inner">
+                    <p class="title">copyright</p>
+                    <p class="prev">© <em id="copyright-year">2015</em> <a href="index-5.html">vinaquips.com</a></p>
+                    <ul class="follow_icon2">
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-google-plus"></a></li>
+                        <li><a href="#" class="fa fa-rss"></a></li>
+                        <li><a href="#" class="fa fa-pinterest"></a></li>
+                        <li><a href="#" class="fa fa-linkedin"></a></li>
                     </ul>
-                </div>
-            </div>
-            <div class="item item-2">
-                <div class="head">Danh mục</div>
-                <ul class="nav-footer">
-                    @foreach ($categories as $cate)
-                        @if ($cate->subCategories->count() == 0)
-                            <li>
-                                <a href="{{url('chuyen-muc', $cate->slug)}}" title="{{$cate->name}}"><span>{{$cate->name}}</span></a>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
-            </div>
-            <div class="item item-3">
-                <div class="head">LIÊN HỆ</div>
-                <ul class="nav-footer">
-                    <li>Địa chỉ: Số aa</li>
-                    <li> Điện thoại: </li>
-                    <li>
-                        Email: <a href="mailto:info@gmail.com" title="info@gmail.com">info@gmail.com</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="item item-4">
-                <div class="head">Đăng ký nhận tin</div>
-                <form action="" method="post">
-                    <input type="email" name="email" class="txt txt-email" placeholder="Email">
-                    <input type="submit" value="Gửi" class="btn btn-submit">
-                </form>
-            </div>
-            <div class="clear"></div>
+                </div></div>
+            <div style="height: 233px; visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;" class="col-lg-3 col-md-3 col-sm-6 col-xs-6 maxheight2 wow fadeInUp animated" data-wow-delay="0.1s"><div class="box_inner">
+                    <p class="title">Important Links</p>
+                    <ul class="list1">
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Special Promotions</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div></div>
+            <div style="height: 233px; visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;" class="col-lg-3 col-md-3 col-sm-6 col-xs-6 maxheight2 wow fadeInUp animated" data-wow-delay="0.2s"><div class="box_inner">
+                    <p class="title">Support Menu</p>
+                    <ul class="list1">
+                        <li><a href="#">Lost Password?</a></li>
+                        <li><a href="#">Forgot your Username?</a></li>
+                        <li><a href="#">Your Membership</a></li>
+                        <li><a href="#">Your Account</a></li>
+                        <li><a href="#">Support Forum</a></li>
+                    </ul>
+                </div></div>
+            <div style="height: 233px; visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;" class="col-lg-3 col-md-3 col-sm-6 col-xs-6 maxheight2 wow fadeInUp animated" data-wow-delay="0.3s"><div class="box_inner">
+                    <p class="title">About Us</p>
+                    <ul class="list1">
+                        <li><a href="#">Customer focus</a></li>
+                        <li><a href="#">Performance</a></li>
+                        <li><a href="#">Innovation</a></li>
+                        <li><a href="#">Responsibility</a></li>
+                    </ul>
+                </div></div>
         </div>
     </div>
-</footer><!--//footer-->
+    <!-- FOOTER -->
+</footer>

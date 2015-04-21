@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Viem gan Admin</title>
+    <title>Admin</title>
 
     <!-- Custom Fonts -->
     <link href="{{ url('/css/admin.css') }}" rel="stylesheet" type="text/css">

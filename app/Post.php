@@ -4,8 +4,6 @@ use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Webpatser\Uuid\Uuid;
 
 class Post extends Model implements SluggableInterface {
 
@@ -19,35 +17,17 @@ class Post extends Model implements SluggableInterface {
 
     protected $fillable = [
         'title',
+        'slug',
+        'category_id',
         'desc',
         'content',
-        'image',
-        'category_id',
-        'status',
-        'hot',
-        'right',
+        'avatar',
         'views',
         'likes',
-        'slug',
-        'right_block'
+        'homepage',
+        'status',
+        'feature'
     ];
-
-    /**
-     * When title change then slug will change.
-     * @param $title
-     * @internal param $name
-     * @internal param $title
-     */
-   /* public function setTitleAttribute($title)
-    {
-        $this->attributes['title'] = $title;
-        $slug = Str::limit( Str::slug($title), 200, '');
-        //check if slug exit.
-        if ($this->where('slug', $slug)->first()) {
-            $slug = Str::limit( Str::slug($title. ' ' . Uuid::generate()), 200, '');
-        }
-        $this->attributes['slug'] = $slug;
-    }*/
 
     /**
      * post belong to one category.
@@ -73,14 +53,27 @@ class Post extends Model implements SluggableInterface {
 
     /**
      * like tags.
+     *
      * @param $query
-     * @param bool $case
+     *
      * @return mixed
+     * @internal param bool $case
      * @internal param $tag
      */
-    public function scopeHot($query, $case = false)
+    public function scopeHomepage($query)
     {
-       return ($case) ? $query->where('hot', true) : $query->where('right', true);
+       return $query->where('homepage', true);
+    }
+
+    /**
+     * filter feature post.
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeFeature($query)
+    {
+        return $query->where('feature', true);
     }
 
     /**

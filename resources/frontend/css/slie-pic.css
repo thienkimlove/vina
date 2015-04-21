@@ -1,0 +1,102 @@
+
+/* Gallery styles */
+
+.gallery{
+	
+	max-width:430px;
+	float:left;
+	
+	
+	/* The width of the gallery */
+	
+	overflow:hidden;
+	height:470px;
+	
+}
+#slides{
+	/* This is the slide area */
+	height:390px;
+	
+	/* jQuery changes the width later on to the sum of the widths of all the slides. */
+	width:430px;
+	overflow:hidden;
+}
+
+.slide{
+	float:left;
+}
+.slide img{
+	max-width:430px;
+	
+}
+#menu{
+	/* This is the container for the thumbnails */
+	height:45px;
+}
+
+#menu ul{
+	margin:0px;
+	padding:0px;
+}
+
+#menu ul li{
+	/* Every thumbnail is a li element */
+	
+	display:inline-block;
+	list-style:none;
+	height:75px;
+	overflow:hidden;
+	border:#BDBDBD 1px solid;
+	margin-left:20px;
+}
+
+#menu ul li.inact:hover{
+	/* The inactive state, highlighted on mouse over */
+	background:url(../images/pic_bg.png) repeat;
+}
+
+#menu ul li.act,li.act:hover{
+	/* The active state of the thumb */
+	border:#C90003 1px solid;
+}
+
+#menu ul li.act a{
+	cursor:default;
+}
+
+.fbar{
+	/* The left-most vertical bar, next to the first thumbnail */
+	width:2px;
+	
+}
+
+#menu ul li a{
+	display:block;
+	margin-top:-5px;
+	
+}
+
+#menu ul li a img{
+	max-width:105px;	
+	
+}
+
+/* The styles below are only necessary for the demo page */
+
+
+
+
+a, a:visited {
+	color:#0196e3;
+	text-decoration:none;
+	outline:none;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+
+.color-red{
+	color:#cc0000;
+}

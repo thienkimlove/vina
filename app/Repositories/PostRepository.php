@@ -29,11 +29,10 @@ class PostRepository extends BaseRepository
             'title' => $request->input('title'),
             'desc' => $request->input('desc'),
             'content' => $request->input('content'),
-            'image' => ($request->file('image') && $request->file('image')->isValid()) ? $this->saveImage($request) : '',
+            'avatar' => ($request->file('avatar') && $request->file('avatar')->isValid()) ? $this->saveImage($request->file('avatar')) : 'post.png',
             'category_id' => $request->input('category_id'),
-            'right' => ($request->input('right') == 'on') ? true : false,
-            'right_block' => ($request->input('right_block') == 'on') ? true : false,
-            'hot' => ($request->input('hot') == 'on') ? true : false
+            'homepage' => ($request->input('homepage') == 'on') ? true : false,
+            'feature' => ($request->input('feature') == 'on') ? true : false,
         ]);
         $this->syncTags($post, $request);
         return $post;
@@ -58,12 +57,11 @@ class PostRepository extends BaseRepository
         $post = $this->getById($id);
         $update = $request->all();
 
-        $update['hot'] = (!empty($update['hot']) && $update['hot'] == 'on') ? true : false;
-        $update['right'] = (!empty($update['right']) && $update['right'] == 'on') ? true : false;
-        $update['right_block'] = (!empty($update['right_block']) && $update['right_block'] == 'on') ? true : false;
+        $update['homepage'] = (!empty($update['homepage']) && $update['homepage'] == 'on') ? true : false;
+        $update['feature'] = (!empty($update['feature']) && $update['feature'] == 'on') ? true : false;
 
-        if ($request->file('image') && $request->file('image')->isValid()) {
-            $update['image'] = $this->saveImage($request, $post->image);
+        if ($request->file('avatar') && $request->file('avatar')->isValid()) {
+            $update['avatar'] = $this->saveImage($request->file('avatar'), $post->avatar);
         }
         $post->update($update);
         $this->syncTags($post, $request);
@@ -81,50 +79,13 @@ class PostRepository extends BaseRepository
     }
 
     /**
-     * save image and create resize thumb.
-     * @param $request
-     * @param null $old
-     * @return string
-     */
-    protected function saveImage($request, $old = null)
-    {
-        $filename = md5(time()) . '.' . $request->file('image')->getClientOriginalExtension();
-        $manager = new ImageManager(array('driver' => 'imagick'));
-        $img = $manager->make($request->file('image')->getRealPath());
-        // resize the image to a width of 300 and constrain aspect ratio (auto height)
-        $img->resize(500, 330)->save(public_path() . '/files/images/600_' . $filename);
-        $img->resize(414, 275)->save(public_path() . '/files/images/500_' . $filename);
-        $img->resize(314, 209)->save(public_path() . '/files/images/400_' . $filename);
-        $img->resize(282, 167)->save(public_path() . '/files/images/300_' . $filename);
-        $img->resize(235, 156)->save(public_path() . '/files/images/200_' . $filename);
-        $img->resize(115, 80)->save(public_path() . '/files/images/100_' . $filename);
-
-
-          /*  ->resize(500, 330)->save(public_path() . '/files/images/600_' . $filename)
-            ->resize(414, 275)->save(public_path() . '/files/images/500_' . $filename)
-            ->resize(314, 209)->save(public_path() . '/files/images/400_' . $filename)
-            ->resize(282, 167)->save(public_path() . '/files/images/300_' . $filename)
-            ->resize(235, 156)->save(public_path() . '/files/images/200_' . $filename)
-            ->resize(115, 80)->save(public_path() . '/files/images/100_' . $filename);*/
-        if ($old) {
-            @unlink(public_path() . '/files/images/100_' . $old);
-            @unlink(public_path() . '/files/images/200_' . $old);
-            @unlink(public_path() . '/files/images/300_' . $old);
-            @unlink(public_path() . '/files/images/400_' . $old);
-            @unlink(public_path() . '/files/images/500_' . $old);
-            @unlink(public_path() . '/files/images/600_' . $old);
-        }
-        return $filename;
-    }
-
-    /**
      * @return array
      */
     protected function getCategoriesList()
     {
         $categories = Category::all()
             ->filter(function ($item) {
-                return $item->subCategories()->count() == 0;
+                return $item->children()->count() == 0;
             })
             ->lists('name', 'id');
         return $categories;

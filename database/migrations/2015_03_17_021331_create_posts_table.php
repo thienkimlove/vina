@@ -17,12 +17,12 @@ class CreatePostsTable extends Migration {
 			$table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->string('title');
-            $table->string('slug', 200)->unique();
+            $table->string('slug')->unique();
             $table->text('desc');
             $table->text('content');
-            $table->string('image');
-            $table->boolean('hot')->default(false);
-            $table->boolean('right')->default(false);
+            $table->string('avatar');
+            $table->boolean('homepage')->default(false);
+            $table->boolean('feature')->default(false);
             $table->integer('views')->default(0);
             $table->integer('likes')->default(0);
             $table->boolean('status')->default(true);

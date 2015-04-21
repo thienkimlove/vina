@@ -37,7 +37,7 @@ class CategoriesController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        $this->categoryRepository->store($request->all());
+        $this->categoryRepository->store($request);
         flash('Create category success!', 'success');
         return redirect('admin/categories');
     }
@@ -72,7 +72,7 @@ class CategoriesController extends Controller
      */
     public function update($id, CategoryRequest $request)
     {
-         $this->categoryRepository->update($request->all(), $id);
+         $this->categoryRepository->update($request, $id);
          flash('Update category success!', 'success');
          return redirect('admin/categories');
     }

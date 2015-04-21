@@ -9,30 +9,14 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('display_homepage_0', 'Is Root?') !!}
-    {!! Form::checkbox('display_homepage_0', null, null) !!}
+    {!! Form::label('icon', 'Image') !!}
+    @if ($category->icon)
+        <img src="{{url('files/images/' .$category->icon)}}" width="100" height="100" />
+        <hr>
+    @endif
+    {!! Form::file('icon', null, ['class' => 'form-control']) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::label('display_homepage_1', '1st block at homepage') !!}
-    {!! Form::checkbox('display_homepage_1', null, null) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('display_homepage_2', '2nd block at homepage') !!}
-    {!! Form::checkbox('display_homepage_2', null, null) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('display_below', 'Bottom Block') !!}
-    {!! Form::checkbox('display_below', null, null) !!}
-</div>
-
-
-<div class="form-group">
-    {!! Form::label('template', 'Choose layout template') !!}
-    {!! Form::select('template', $layout, null, ['class' => 'form-control']) !!}
-</div>
 
   <div class="form-group">
         {!! Form::submit($submitText, ['class' => 'btn btn-primary form-control']) !!}

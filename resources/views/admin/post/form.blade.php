@@ -4,12 +4,12 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('image', 'Image') !!}
-    @if ($post->image)
-        <img src="{{url('files/images/100_' .$post->image)}}" />
+    {!! Form::label('avatar', 'Image') !!}
+    @if ($post->avatar)
+        <img src="{{url('files/images/' .$post->avatar)}}" height="100" width="100" />
         <hr>
     @endif
-    {!! Form::file('image', null, ['class' => 'form-control']) !!}
+    {!! Form::file('avatar', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
@@ -19,18 +19,13 @@
 
 
 <div class="form-group">
-    {!! Form::label('hot', 'Make post display in homepage') !!}
-    {!! Form::checkbox('hot', null, null) !!}
+    {!! Form::label('homepage', 'Make product display in homepage') !!}
+    {!! Form::checkbox('homepage', null, null) !!}
 </div>
 
 <div class="form-group">
-    {!! Form::label('right', 'Make post display in homepage right column') !!}
-    {!! Form::checkbox('right', null, null) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('right_block', 'Make post display in "Binh chon san pham"') !!}
-    {!! Form::checkbox('right_block', null, null) !!}
+    {!! Form::label('feature', 'Make product display in top') !!}
+    {!! Form::checkbox('feature', null, null) !!}
 </div>
 
 

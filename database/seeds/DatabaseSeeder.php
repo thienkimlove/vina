@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-		//$this->call('PostTableSeeder');
-		$this->call('ClearSeeder');
+		$this->call('PostTableSeeder');
+		//$this->call('ClearSeeder');
 	}
 
 }
@@ -32,7 +32,6 @@ class ClearSeeder extends Seeder {
         DB::table('post_tag')->truncate();
         DB::table('posts')->truncate();
         DB::table('tags')->truncate();
-        DB::table('questions')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
@@ -46,14 +45,16 @@ class PostTableSeeder extends Seeder {
     public function run()
     {
         $lipsum = new LoremIpsumGenerator;
-        $image = 'default.jpg';
+
+        $post_image_default = 'post.png';
+        $category_icon_default = 'icon.png';
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('post_tag')->truncate();
         DB::table('posts')->truncate();
         DB::table('categories')->truncate();
         DB::table('users')->truncate();
         DB::table('tags')->truncate();
-        DB::table('questions')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         User::create([
@@ -61,45 +62,41 @@ class PostTableSeeder extends Seeder {
             'email' => 'tieumaster@yahoo.com',
             'password' => Hash::make('232323')
         ]);
-        Category::create([
-            'name' => 'Các bệnh về gan',
-            'template' => 0
+        $category =  Category::create([
+            'name' => 'Main Category 1',
+            'icon' => $category_icon_default
         ]);
-        Category::create([
-            'name' => 'Dược liệu với bệnh gan',
-            'template' => 2
-        ]);
-        Category::create([
-            'name' => 'Sản phẩm tốt cho gan',
-            'template' => 3
-        ]);
-        Category::create([
-            'name' => 'Viêm gan Virus',
-            'template' => 1,
-            'parent_id'=>1
-        ]);
-        Category::create([
-            'name' => 'Bệnh gan 2',
-            'template' => 2,
-            'parent_id'=>1
-        ]);
-        Category::create([
-            'name' => 'Bệnh gan 3',
-            'template' => 2,
-            'parent_id'=>1
+        $sub1 = Category::create([
+            'name' => 'Sub 1 Category 1',
+            'icon' => $category_icon_default,
+            'parent_id' => $category->id
         ]);
 
-        Category::create([
-            'name' => 'Chia sẻ',
-            'template' => 2
+        $sub2  = Category::create([
+            'name' => 'Sub 2 Category 1',
+            'icon' => $category_icon_default,
+            'parent_id' => $category->id
         ]);
 
-        for ($i = 1; $i < 20; $i ++) {
-            Question::create([
-                'question' => $lipsum->getContent(10, 'txt'),
-                'answer' => $lipsum->getContent(10, 'txt')
-            ]);
-        }
+        $category2 =  Category::create([
+            'name' => 'Main Category 2',
+            'icon' => $category_icon_default
+        ]);
+        $sub12 = Category::create([
+            'name' => 'Sub 1 Category 2',
+            'icon' => $category_icon_default,
+            'parent_id' => $category2->id
+        ]);
+
+        $sub22  = Category::create([
+            'name' => 'Sub 2 Category 2',
+            'icon' => $category_icon_default,
+            'parent_id' => $category2->id
+        ]);
+
+        $categories = [$category->id, $sub1->id, $sub2->id, $category2->id, $sub12->id, $sub22->id];
+
+
 
         $tagIds = [];
         for ($i = 1; $i < 10; $i ++) {
@@ -107,19 +104,19 @@ class PostTableSeeder extends Seeder {
                 'name' => $lipsum->getContent(3, 'txt')
             ])->id;
         }
-        foreach ([2, 3, 4, 5, 6, 7] as $category) {
+        foreach ($categories as $category) {
             for ($i = 1; $i < 40; $i ++) {
                $rand = rand(0,10);
-               $hot = ($rand == 5) ? true : false;
-               $right = ($rand == 3) ? true : false;
+               $homepage = ($rand == 5) ? true : false;
+               $feature = ($rand == 3) ? true : false;
                $post = Post::create([
                    'category_id' => $category,
                    'title' => $lipsum->getContent(10, 'txt').' '.Uuid::generate(),
                    'desc' => $lipsum->getContent(20, 'plain'),
                    'content' => $lipsum->getContent(500),
-                   'hot' => $hot,
-                   'right' => $right,
-                  'image' => $image
+                   'homepage' => $homepage,
+                   'feature' => $feature,
+                   'avatar' => $post_image_default
                 ]);
                $post->tags()->sync(array_slice($tagIds, 0, rand(1, 10)));
             }
